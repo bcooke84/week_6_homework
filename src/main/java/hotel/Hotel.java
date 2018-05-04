@@ -28,7 +28,7 @@ public class Hotel {
     }
 
     public int countConferenceRooms() {
-        return this.conferenceRooms.size();
+        return this.getConferenceRooms().size();
     }
 
     public ArrayList<DiningRoom> getDiningRooms() {
@@ -40,7 +40,7 @@ public class Hotel {
     }
 
     public int countDiningRooms() {
-        return this.diningRooms.size();
+        return getDiningRooms().size();
     }
 
     public ArrayList<BedRoom> getBedRooms() {
@@ -52,11 +52,11 @@ public class Hotel {
     }
 
     public int countBedRooms() {
-        return this.bedRooms.size();
+        return this.getBedRooms().size();
     }
 
-    public void checkGuestIn(Room room, Guest guest) {
-        room.addGuestToRoom(guest);
+    public void checkGuestIn(BedRoom bedRoom, Guest guest, int numberOfNights) {
+        bedRoom.addGuestToRoom(guest, numberOfNights);
     }
 
     public void checkGuestOut(Room room) {

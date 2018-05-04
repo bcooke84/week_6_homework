@@ -56,8 +56,8 @@ public class BedRoomTest {
 
     @Test
     public void canGetBedRoomList() {
-        bedRoom2.addGuestToRoom(guest1);
-        bedRoom2.addGuestToRoom(guest2);
+        bedRoom2.addGuestToRoom(guest1, 1);
+        bedRoom2.addGuestToRoom(guest2, 1);
         assertEquals(2, bedRoom2.getRoomList().size());
     }
 }

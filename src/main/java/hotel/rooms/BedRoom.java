@@ -43,6 +43,11 @@ public class BedRoom extends Room {
         this.nightlyRate = nightlyRate;
     }
 
+    public void addGuestToRoom(Guest guest, int numberOfNights) {
+        this.guests.add(guest);
+        this.numberOfNightsOccupied = numberOfNights;
+    }
+
 
 
 

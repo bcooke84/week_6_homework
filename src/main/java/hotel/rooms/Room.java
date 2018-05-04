@@ -7,7 +7,7 @@ import java.util.ArrayList;
 public abstract class Room {
 
     private int capacity;
-    private ArrayList<Guest> guests;
+    protected ArrayList<Guest> guests;
 
     public Room(int capacity) {
         this.capacity = capacity;
@@ -25,10 +25,10 @@ public abstract class Room {
     public ArrayList<Guest> getGuests() {
         return guests;
     }
-
-    public void addGuestToRoom(Guest guest) {
-        this.guests.add(guest);
-    }
+//
+//    public void addGuestToRoom(Guest guest) {
+//        this.guests.add(guest);
+//    }
 
     public Guest removeGuestFromRoom() {
         return this.guests.remove(0);
