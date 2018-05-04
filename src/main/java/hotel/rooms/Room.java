@@ -25,10 +25,11 @@ public abstract class Room {
     public ArrayList<Guest> getGuests() {
         return guests;
     }
-//
-//    public void addGuestToRoom(Guest guest) {
-//        this.guests.add(guest);
-//    }
+
+    public void addGuestToRoom(Guest guest) {
+        if (this.checkRoomHasSpace() == true) {
+        this.guests.add(guest);}
+    }
 
     public Guest removeGuestFromRoom() {
         return this.guests.remove(0);
@@ -41,5 +42,13 @@ public abstract class Room {
     public ArrayList<Guest> getRoomList() {
         return this.getGuests();
     }
+
+    public Boolean checkRoomHasSpace() {
+        if (this.capacity > this.countGuestsInRoom()) {
+            return true;
+        }
+        else return false;
+    }
+
 
 }

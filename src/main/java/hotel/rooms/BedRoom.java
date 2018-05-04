@@ -44,11 +44,10 @@ public class BedRoom extends Room {
     }
 
     public void addGuestToRoom(Guest guest, int numberOfNights) {
+        if (this.checkRoomHasSpace() == true) {
         this.guests.add(guest);
-        this.numberOfNightsOccupied = numberOfNights;
+        this.numberOfNightsOccupied = numberOfNights;}
     }
-
-
 
 
 }

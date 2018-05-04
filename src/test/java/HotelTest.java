@@ -6,6 +6,7 @@ import hotel.rooms.DiningRoom;
 import hotel.rooms.RoomType;
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.experimental.theories.suppliers.TestedOn;
 
 import static org.junit.Assert.assertEquals;
 
@@ -24,8 +25,8 @@ public class HotelTest {
         hotel = new Hotel();
         bedRoom1 = new BedRoom(RoomType.SINGLE, 1, 40.00);
         bedRoom2 = new BedRoom(RoomType.DOUBLE, 2, 50.00);
-        conferenceRoom = new ConferenceRoom(50, "North Conference Room", 250.00 );
-        diningRoom = new DiningRoom(100, "Fine Dining");
+        conferenceRoom = new ConferenceRoom(1, "North Conference Room", 250.00 );
+        diningRoom = new DiningRoom(1, "Fine Dining");
         hotel.addDiningRooms(diningRoom);
         hotel.addConferenceRooms(conferenceRoom);
         hotel.addBedRooms(bedRoom1);
@@ -50,9 +51,42 @@ public class HotelTest {
     }
 
     @Test
-    public void canAddGuestToRoom() {
+    public void canAddGuestToBedRoom() {
         hotel.checkGuestIn(bedRoom1, guest1, 1);
         assertEquals(1, bedRoom1.countGuestsInRoom());
+    }
+
+    @Test
+    public void willNotAddToBedRoomWhenFull() {
+        hotel.checkGuestIn(bedRoom1, guest1, 1);
+        hotel.checkGuestIn(bedRoom1, guest2, 1);
+        assertEquals(1, bedRoom1.countGuestsInRoom());
+    }
+
+    @Test
+    public void canAddGuestToConferenceRoom() {
+        hotel.admitGuestToRoom(conferenceRoom, guest1);
+        assertEquals(1, conferenceRoom.countGuestsInRoom());
+    }
+
+    @Test
+    public void willNotAddToConferenceRoomWhenFull() {
+        hotel.admitGuestToRoom(conferenceRoom, guest1);
+        hotel.admitGuestToRoom(conferenceRoom, guest2);
+        assertEquals(1, conferenceRoom.countGuestsInRoom());
+    }
+
+    @Test
+    public void canAddGuestToDiningRoom() {
+        hotel.admitGuestToRoom(diningRoom, guest1);
+        assertEquals(1, diningRoom.countGuestsInRoom());
+    }
+
+    @Test
+    public void willNotAddToDiningRoomWhenFull() {
+        hotel.admitGuestToRoom(diningRoom, guest1);
+        hotel.admitGuestToRoom(diningRoom, guest2);
+        assertEquals(1, diningRoom.countGuestsInRoom());
     }
 
     @Test
@@ -63,7 +97,7 @@ public class HotelTest {
     }
 
     @Test
-    public void canGetVacantRooms() {
+    public void canGetVacantBedRooms() {
         hotel.checkGuestIn(bedRoom1, guest1, 1);
         assertEquals(1, hotel.getVacantBedRooms().size());
     }

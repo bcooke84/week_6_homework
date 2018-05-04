@@ -63,6 +63,10 @@ public class Hotel {
         room.removeGuestFromRoom();
     }
 
+    public void admitGuestToRoom(Room conferenceRoom, Guest guest) {
+        conferenceRoom.addGuestToRoom(guest);
+    }
+
     public ArrayList<Room> getVacantBedRooms() {
         ArrayList emptyRooms = new ArrayList<Room>();
         for (BedRoom bedroom : bedRooms) {
