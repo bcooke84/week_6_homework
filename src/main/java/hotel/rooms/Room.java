@@ -39,10 +39,6 @@ public abstract class Room {
         return this.guests.size();
     }
 
-    public ArrayList<Guest> getRoomList() {
-        return this.getGuests();
-    }
-
     public Boolean checkRoomHasSpace() {
         if (this.capacity > this.countGuestsInRoom()) {
             return true;

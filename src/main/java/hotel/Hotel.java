@@ -52,7 +52,7 @@ public class Hotel {
     }
 
     public int countDiningRooms() {
-        return getDiningRooms().size();
+        return this.getDiningRooms().size();
     }
 
     public void checkGuestInToBedRoom(BedRoom bedRoom, Guest guest, int numberOfNights) {

@@ -55,9 +55,29 @@ public class BedRoomTest {
     }
 
     @Test
-    public void canGetBedRoomList() {
+    public void canGetListOfGuests() {
         bedRoom2.addGuestToRoom(guest1, 1);
         bedRoom2.addGuestToRoom(guest2, 1);
-        assertEquals(2, bedRoom2.getRoomList().size());
+        assertEquals(2, bedRoom2.getGuests().size());
+    }
+
+    @Test
+    public void canRemoveGuest() {
+        bedRoom2.addGuestToRoom(guest1);
+        bedRoom2.addGuestToRoom(guest2);
+        bedRoom2.removeGuestFromRoom();
+        assertEquals(1, bedRoom2.countGuestsInRoom());
+    }
+
+    @Test
+    public void checkRoomHasSpace() {
+        assertEquals(true, bedRoom1.checkRoomHasSpace());
+    }
+
+    @Test
+    public void checkRoomIsFull() {
+        bedRoom2.addGuestToRoom(guest1);
+        bedRoom2.addGuestToRoom(guest2);
+        assertEquals(false, bedRoom2.checkRoomHasSpace());
     }
 }
