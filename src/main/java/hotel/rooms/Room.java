@@ -26,7 +26,20 @@ public abstract class Room {
         return guests;
     }
 
-    public void setGuests(ArrayList<Guest> guests) {
-        this.guests = guests;
+    public void addGuestToRoom(Guest guest) {
+        this.guests.add(guest);
     }
+
+    public Guest removeGuestFromRoom() {
+        return this.guests.remove(0);
+    }
+
+    public int countGuestsInRoom() {
+        return this.guests.size();
+    }
+
+    public ArrayList<Guest> getRoomList() {
+        return this.getGuests();
+    }
+
 }

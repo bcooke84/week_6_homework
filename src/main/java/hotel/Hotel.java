@@ -3,6 +3,7 @@ package hotel;
 import hotel.rooms.BedRoom;
 import hotel.rooms.ConferenceRoom;
 import hotel.rooms.DiningRoom;
+import hotel.rooms.Room;
 
 import java.util.ArrayList;
 
@@ -54,7 +55,21 @@ public class Hotel {
         return this.bedRooms.size();
     }
 
-    public void checkGuestIn(Guest guest) {
+    public void checkGuestIn(Room room, Guest guest) {
+        room.addGuestToRoom(guest);
+    }
 
+    public void checkGuestOut(Room room) {
+        room.removeGuestFromRoom();
+    }
+
+    public ArrayList<Room> getVacantBedRooms() {
+        ArrayList emptyRooms = new ArrayList<Room>();
+        for (BedRoom bedroom : bedRooms) {
+            if (bedroom.countGuestsInRoom() == 0) {
+                emptyRooms.add(bedroom);
+            }
+        }
+        return emptyRooms;
     }
 }

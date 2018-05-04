@@ -1,3 +1,4 @@
+import hotel.Guest;
 import hotel.Hotel;
 import hotel.rooms.BedRoom;
 import hotel.rooms.ConferenceRoom;
@@ -15,6 +16,8 @@ public class HotelTest {
     BedRoom bedRoom2;
     ConferenceRoom conferenceRoom;
     DiningRoom diningRoom;
+    Guest guest1;
+    Guest guest2;
 
     @Before
     public void before() {
@@ -23,22 +26,46 @@ public class HotelTest {
         bedRoom2 = new BedRoom(RoomType.DOUBLE, 2, 50.00);
         conferenceRoom = new ConferenceRoom(50, "North Conference Room", 250.00 );
         diningRoom = new DiningRoom(100, "Fine Dining");
-
+        hotel.addDiningRooms(diningRoom);
+        hotel.addConferenceRooms(conferenceRoom);
+        hotel.addBedRooms(bedRoom1);
+        hotel.addBedRooms(bedRoom2);
+        guest1 = new Guest();
+        guest2 = new Guest();
     }
 
     @Test
     public void canAddBedRoom() {
-        hotel.addBedRooms(bedRoom1);
-        assertEquals(1,hotel.countBedRooms());
+        assertEquals(2,hotel.countBedRooms());
     }
+
     @Test
     public void canAddConferenceRoom() {
-        hotel.addConferenceRooms(conferenceRoom);
         assertEquals(1, hotel.countConferenceRooms());
     }
+
     @Test
     public void canAddDiningRoom() {
-        hotel.addDiningRooms(diningRoom);
         assertEquals(1, hotel.countDiningRooms());
     }
+
+    @Test
+    public void canAddGuestToRoom() {
+        hotel.checkGuestIn(bedRoom1, guest1);
+        assertEquals(1, bedRoom1.countGuestsInRoom());
+    }
+
+    @Test
+    public void canRemoveGuestFromRoom() {
+        hotel.checkGuestIn(bedRoom1, guest1);
+        hotel.checkGuestOut(bedRoom1);
+        assertEquals(0, bedRoom1.countGuestsInRoom());
+    }
+
+    @Test
+    public void canGetVacantRooms() {
+        hotel.checkGuestIn(bedRoom1, guest1);
+        assertEquals(1, hotel.getVacantBedRooms().size());
+    }
+
 }

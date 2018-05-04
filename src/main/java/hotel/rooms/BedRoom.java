@@ -1,9 +1,14 @@
 package hotel.rooms;
 
+import hotel.Guest;
+
+import java.util.ArrayList;
+
 public class BedRoom extends Room {
     private RoomType bedRoomType;
     private int bedRoomNumber;
     private double nightlyRate;
+    private int numberOfNightsOccupied;
 
     public BedRoom(RoomType bedRoomType, int bedRoomNumber, double nightlyRate) {
         super(bedRoomType.getCapacity());
@@ -11,6 +16,7 @@ public class BedRoom extends Room {
         this.bedRoomType = bedRoomType;
         this.bedRoomNumber = bedRoomNumber;
         this.nightlyRate = nightlyRate;
+        this.numberOfNightsOccupied = 0;
     }
 
     public RoomType getBedRoomType() {
@@ -36,6 +42,8 @@ public class BedRoom extends Room {
     public void setNightlyRate(double nightlyRate) {
         this.nightlyRate = nightlyRate;
     }
+
+
 
 
 }

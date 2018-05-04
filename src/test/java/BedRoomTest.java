@@ -1,3 +1,4 @@
+import hotel.Guest;
 import hotel.rooms.BedRoom;
 import hotel.rooms.RoomType;
 import org.junit.Before;
@@ -9,11 +10,15 @@ public class BedRoomTest {
 
     BedRoom bedRoom1;
     BedRoom bedRoom2;
+    Guest guest1;
+    Guest guest2;
 
     @Before
     public void before() {
         bedRoom1 = new BedRoom(RoomType.SINGLE, 1, 40.00);
         bedRoom2 = new BedRoom(RoomType.DOUBLE, 2, 50.00);
+        guest1 = new Guest();
+        guest2 = new Guest();
     }
 
     @Test
@@ -47,5 +52,12 @@ public class BedRoomTest {
     public void canSetNightlyRate() {
         bedRoom2.setNightlyRate(60.00);
         assertEquals(60.00, bedRoom2.getNightlyRate(), 0.01);
+    }
+
+    @Test
+    public void canGetBedRoomList() {
+        bedRoom2.addGuestToRoom(guest1);
+        bedRoom2.addGuestToRoom(guest2);
+        assertEquals(2, bedRoom2.getRoomList().size());
     }
 }
