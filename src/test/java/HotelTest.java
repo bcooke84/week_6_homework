@@ -30,7 +30,7 @@ public class HotelTest {
         conferenceRoom1 = new ConferenceRoom(1, "North Conference Room", 250.00 );
         conferenceRoom2 = new ConferenceRoom(1, "South Conference Room", 250.00 );
         diningRoom1 = new DiningRoom(1, "Fine Dining");
-        diningRoom2 = new DiningRoom(1, "Carvery");
+        diningRoom2 = new DiningRoom(2, "Carvery");
         hotel.addDiningRooms(diningRoom1);
         hotel.addDiningRooms(diningRoom2);
         hotel.addConferenceRooms(conferenceRoom1);
@@ -118,6 +118,13 @@ public class HotelTest {
     public void canGetVacantDiningRooms() {
         hotel.admitGuestToRoom(diningRoom1, guest1);
         assertEquals(1, hotel.getVacantDiningRooms().size());
+    }
+
+    @Test
+    public void canGetGuestList() {
+        hotel.admitGuestToRoom(diningRoom2, guest1);
+        hotel.admitGuestToRoom(diningRoom2, guest2);
+        assertEquals(2, hotel.getGuestsInRoom(diningRoom2).size());
     }
 
 }

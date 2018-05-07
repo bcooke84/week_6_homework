@@ -97,4 +97,8 @@ public class Hotel {
         return emptyDiningRooms;
     }
 
+    public ArrayList<Guest> getGuestsInRoom(Room room) {
+        return room.getGuests();
+    }
+
 }
